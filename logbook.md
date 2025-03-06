@@ -1,3 +1,26 @@
+[backup] How backup audio cd
+```
+sudo apt install cdrdao
+# backup
+cdrdao read-cd --driver generic-mmc-raw --device /dev/cdrom --speed 4 --wav --cuefile mycd.cue mycd.bin
+
+# burning
+cdrdao write --device /dev/cdrom --speed 4 --audio mycd.cue
+
+# ripping
+sudo apt install rubyripper
+# mount as iso 
+sudo apt install bchunk
+bchunk mycd.bin mycd.cue mycd.iso
+sudo mkdir /mnt/iso
+sudo mount -o loop mycd.iso /mnt/iso
+
+# mount directlu
+sudo apt install fuseiso
+sudo mkdir /mnt/bin-cue
+fuseiso mycd.cue /mnt/bin-cue
+```
+
 [qemu] How to install QEMU on Linux Mint
 ```
 apt install bridge-utils virt-manager
